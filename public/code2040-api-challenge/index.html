@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>CODE2040 API challenge &middot; Caynan Sousa</title>
+
+  
+  <link rel="stylesheet" href="http://localhost:1313//css/poole.css">
+  <link rel="stylesheet" href="http://localhost:1313//css/hyde.css">
+  <link rel="stylesheet" href="http://localhost:1313//css/poole-overrides.css">
+  <link rel="stylesheet" href="http://localhost:1313//css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://localhost:1313//css/hyde-x.css">
+  <link rel="stylesheet" href="http://localhost:1313//css/highlight/sunburst.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Caynan&#39;s Little Island &middot; Caynan Sousa" />
+
+  <meta name="description" content="What is CODE2040? And the process of applying for it.">
+  <meta name="keywords" content="code2040,api">
+  
+</head>
+<body class="theme-base-0c">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <img src="http://www.gravatar.com/avatar/8cd2bcac678a3c58c40e432938d78b86?s=200" alt="gravatar">
+      <h1>Caynan Sousa</h1>
+      <p class="lead"><p>Our Knowledge is a Little Island in a Great Ocean</p>
+</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://localhost:1313//">Blog</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://github.com/caynan">GitHub</a></li>
+      <li class="sidebar-nav-item"><a href="https://www.linkedin.com/in/caynan">LinkedIn</a></li>
+      
+      
+      
+    </ul>
+
+    <p>Copyright &copy; 2015 <a href="http://localhost:1313//license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>CODE2040 API challenge</h1>
+    <span class="post-date">Jan 2, 2015 &middot; 4 minute read &middot; <a href="http://localhost:1313/code2040-api-challenge/#disqus_thread">Comments</a>
+    
+    <br/>
+    
+    <a class="label" href="http://localhost:1313//categories/coding">coding</a>
+    </span>
+    
+
+<h3 id="overview:9ad81630fc134f79f8b80bc71e1f6165">Overview</h3>
+
+<blockquote>
+<p>CODE2040<sup class="footnote-ref" id="fnref:9ad81630fc134f79f8b80bc71e1f6165:1"><a rel="footnote" href="#fn:9ad81630fc134f79f8b80bc71e1f6165:1">1</a></sup>  is a nonprofit organization that creates pathways to
+educational, professional and entrepreneurial success in technology for
+underrepresented minorities with a specific focus on Blacks and Latino/as.</p>
+</blockquote>
+
+<p>I was told about this program by a friend (Yuri) who was a Fellow in 2012, if
+you understand Portuguese and want to hear a little about his experience you
+could hear this interview<sup class="footnote-ref" id="fnref:9ad81630fc134f79f8b80bc71e1f6165:2"><a rel="footnote" href="#fn:9ad81630fc134f79f8b80bc71e1f6165:2">2</a></sup> with him.  This is a great opportunity to get to
+know like minded people, that are interested in growing as IT professionals,
+since and also great opportunity to got a great internship in which your are
+not only going to learn on the internship, but with the various workshops that
+the CODE2040 organize along the duration of the program.</p>
+
+<p>One of the key objective of the program is to get people engaged, and to create
+a community of people that represents the minorities in the IT world, seriously
+they even make you sign a honor contract that you are going to help others.</p>
+
+<p>So as obvious as it sounds I got interested in the hole idea of the program,
+also in the opportunities that it creates, and went to their website to
+apply<sup class="footnote-ref" id="fnref:9ad81630fc134f79f8b80bc71e1f6165:3"><a rel="footnote" href="#fn:9ad81630fc134f79f8b80bc71e1f6165:3">3</a></sup>.</p>
+
+<h3 id="applying:9ad81630fc134f79f8b80bc71e1f6165">Applying</h3>
+
+<p>As part of the process to apply there is some questions that I think are trying
+to evaluate your soft skills, also your interest in the program as I said the
+idea is to create a community of people that are going to help and spread the
+knowledge in their communities.</p>
+
+<p>After the Demographic questions and the skills to access how you match the
+profile they are trying to find, we get to a really interesting part.</p>
+
+<h3 id="api-challenge:9ad81630fc134f79f8b80bc71e1f6165">API Challenge</h3>
+
+<p>The API challenge is a way to test if you are able to code a solution to simple
+problems on your own. The problems are really basic, you have to GET some
+values from their API process them and POST the results back. I&rsquo;ll explain the
+logic of each problem, and later (after the application period ends) I&rsquo;ll
+create specific articles for each implementation that I&rsquo;ve made.</p>
+
+<h4 id="stage-i-reverse-a-string-you-are-going-to-receive-a-string-that-you-have:9ad81630fc134f79f8b80bc71e1f6165">Stage I: Reverse a string You are going to receive a string, that you have</h4>
+
+<p>to reverse it, most modern languages have builtin functions that do this.
+After you reverse the string you have to POST the result as a  json object in
+the format</p>
+
+<pre><code class="language-javascript">{ token: '&lt;The token you received&gt;', string: 'reversed string' }
+</code></pre>
+
+<p>Pretty straight forward, right?</p>
+
+<h4 id="stage-ii-needle-in-a-haystack-you-are-asked-to-given-a-list-array:9ad81630fc134f79f8b80bc71e1f6165">Stage II: Needle in a haystack You are asked to given a list/array</h4>
+
+<p>(haystack) and a value (needle) find in which position the needle is in the
+zero based list/array. Again really simple question, depending on the language
+you could have a builtin function, if not you could always iterate over the
+elements and find the index.  After you find the position you have to POST the
+result as a json object in the format</p>
+
+<pre><code class="language-javascript">{ token: '&lt;The token you received&gt;', needle: index }
+</code></pre>
+
+<h4 id="stage-iii-prefix-you-are-asked-to-given-a-list-array-return-a-list-array:9ad81630fc134f79f8b80bc71e1f6165">Stage III: Prefix You are asked to given a list/array, return a list/array</h4>
+
+<p>with all the elements that <em>don&rsquo;t</em> start with the given <code>prefix</code>. Again many
+modern languages have builtin functions that do this, if you are is a more low
+level language, you could use a for loop in each input, up to the size of the
+prefix, removing the element every time you find a match.  After you filter the
+input array you have to POST the result as a json object in the format</p>
+
+<pre><code class="language-javascript">{ token: '&lt;The token you received&gt;', array: [ 'filtered', 'array'] }
+</code></pre>
+
+<h4 id="stage-iv-the-dating-game-this-was-probably-the-most-difficult-problem:9ad81630fc134f79f8b80bc71e1f6165">Stage IV: The dating game This was probably the most &lsquo;difficult&rsquo; problem</h4>
+
+<p>of all, you have to receive a date in the ISO 8601 format add an interval in
+seconds and return the final time in the ISO 8601 format. Many languages have
+libraries to work with time, take a look in the documentation of your chosen
+language, it&rsquo;s almost sure your are going to find something that could help a
+lot.  After you find the final <code>datestamp</code> you have to POST the result as a
+json object in the format</p>
+
+<pre><code class="language-javascript">{ token: '&lt;The token you received&gt;', datestamp: 'datestamp' }
+</code></pre>
+
+<h3 id="final-considerations:9ad81630fc134f79f8b80bc71e1f6165">Final Considerations</h3>
+
+<p>I really enjoyed doing this challenge, and I have plans to keep using it, if it
+keeps working after the application period, to learn new languages and
+frameworks. Since it&rsquo;s a great way to get a quick sense of a new tool. If you
+are part of a minority group you should really apply for the CODE2040 program I
+think it&rsquo;s a great opportunity.</p>
+
+<p>So Long, and Thanks for All the Fish</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:9ad81630fc134f79f8b80bc71e1f6165:1"><a href="http://code2040.org">http://code2040.org</a>
+ <a class="footnote-return" href="#fnref:9ad81630fc134f79f8b80bc71e1f6165:1"><sup>[return]</sup></a></li>
+<li id="fn:9ad81630fc134f79f8b80bc71e1f6165:2"><a href="https://www.youtube.com/watch?v=BT6UNiIzx34">https://www.youtube.com/watch?v=BT6UNiIzx34</a>
+ <a class="footnote-return" href="#fnref:9ad81630fc134f79f8b80bc71e1f6165:2"><sup>[return]</sup></a></li>
+<li id="fn:9ad81630fc134f79f8b80bc71e1f6165:3"><a href="http://code2040.org/apply/">http://code2040.org/apply/</a></The>
+ <a class="footnote-return" href="#fnref:9ad81630fc134f79f8b80bc71e1f6165:3"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "caynan";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "caynan";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://localhost:1313//js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','UA-57968478-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>

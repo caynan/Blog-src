@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Coding on Caynan&#39;s Little Island</title>
+    <link>http://localhost:1313/categories/coding/</link>
+    <description>Recent content in Coding on Caynan&#39;s Little Island</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 03 Mar 2015 18:50:48 -0500</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/coding/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>linked list python</title>
+      <link>http://localhost:1313/linked-list-python/</link>
+      <pubDate>Tue, 03 Mar 2015 18:50:48 -0500</pubDate>
+      
+      <guid>http://localhost:1313/linked-list-python/</guid>
+      <description>
+
+&lt;h3 id=&#34;overview:ec6361bea6a833e53a4c1d5018f5dd1a&#34;&gt;Overview&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;In computer science, a linked list is a data structure consisting of a group
+of nodes which together represent a sequence. Under the simplest form, each
+node is composed of a data and a reference (in other words, a link) to the
+next node in the sequence; more complex variants add additional links. This
+structure allows for efficient insertion or removal of elements from any
+position in the sequence.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This is the definition we could find at
+&lt;a href=&#34;http://en.wikipedia.org/wiki/Linked_list&#34;&gt;Wikipedia&lt;/a&gt;.  Linked Lists are really
+simple data structures, we only have to remember when solving problems that
+involve them, to notice if we&amp;rsquo;re using singly linked lists (only have links to
+the next node) or doubly linked lists (links for previous and next nodes).&lt;/p&gt;
+
+&lt;h3 id=&#34;code:ec6361bea6a833e53a4c1d5018f5dd1a&#34;&gt;CODE!&lt;/h3&gt;
+
+&lt;p&gt;Enough talking let&amp;rsquo;s start coding. First you should note the elements that a
+Linked List have, I see two of them, a Node and obviously the Linked List in
+itself, which if you think we could represent as a Node, we only need
+the Head of a Linked List to represent it.&lt;/p&gt;
+
+&lt;p&gt;So let&amp;rsquo;s create two classes in python, &lt;code&gt;Node&lt;/code&gt; that is going to serve as a
+container for the data, and &lt;code&gt;LinkedList&lt;/code&gt; that is going to provide us with
+different methods to manipulate the data structure.&lt;/p&gt;
+
+&lt;p&gt;{% highlight python  %}
+    class _Node(object):
+        def &lt;strong&gt;init&lt;/strong&gt;(self, data=None, next=None):
+            self.data = data
+            self.next = next&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    def __str__(self):
+        return str(self.data)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endhighlight  %}&lt;/p&gt;
+
+&lt;p&gt;There is only two things to note on our implementation of &lt;strong&gt;Node&lt;/strong&gt;, first we&amp;rsquo;re
+declaring it as a protected class, eventhough Python don&amp;rsquo;t have a true
+protected notion, it&amp;rsquo;s more of a
+&lt;a href=&#34;https://google-styleguide.googlecode.com/svn/trunk/pyguide.html#Naming&#34;&gt;notation&lt;/a&gt;.
+The other interesting thing is that we&amp;rsquo;re rewriting the &lt;code&gt;__str__&lt;/code&gt;
+method from object, so every time we print our Nodes we&amp;rsquo;re going to see the
+data they store, which in my opinion makes more sense.&lt;/p&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s see our biggest class, &lt;strong&gt;LinkedList&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;	class LinkedList(object):
+		def __init__(self):
+			self.length = 0
+			self.head = None
+
+		def __str__(self):
+			return self._toString()
+
+		def __len__(self):
+			return self.length
+
+		def _toString(self):
+			node = self.head
+			string_to_return = []
+
+			# While nor None will print the value of the nodes
+			while node:
+				string_to_return.append(&#39;%s &#39; % node)
+				node = node.next
+
+			return &#39;&#39;.join(string_to_return).strip()
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There are two things worth noting in this part of our class, first we&amp;rsquo;re
+rewriting the method &lt;code&gt;__len__&lt;/code&gt; from object, which permit us call &lt;code&gt;len&lt;/code&gt; in our
+LinkedList, also note we&amp;rsquo;re using a list to accumulate the string in the
+&lt;code&gt;_toString&lt;/code&gt; method, this is to avoid waste of space, since strings are
+immutable in python, using something like &lt;code&gt;+=&lt;/code&gt; will result in many objects.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;	def add(self, data):
+		if self.head is None:
+			self.head = _Node(data=data)
+			self.length += 1
+		else:
+			node = self.head
+
+			while node:
+				if node.next is None:
+					node.next = _Node(data=data)
+					self.length += 1
+					break
+				else:
+					node = node.next
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Our add method, is pretty straight forward, if our Linked List is empty (head
+is None) we create a new node as head. If not, we find the tail of list, and
+insert our new Node after it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;	def index(self, x):
+		for i in range(self.length):
+			if node.data = x:
+				return i
+			else:
+				node = node.next
+		raise Exception(&#39;Item Not Found!)
+
+
+	def remove(self, x):
+		# case is empty
+		if self.head is None:
+			raise Exception(&#39;Trying to remove from empty list&#39;)
+		# case is head
+		elif self.head.data == x:
+			self.head = None
+			self.length -= 1
+		# other cases
+		else:
+			node = self.head
+
+			while node:
+				if node.next is None:
+					raise Exception(&#39;Item Not Found!&#39;)
+				elif node.next.data == x:
+					node.next = node.next.next
+					self.length -= 1
+				else:
+					node = node.next
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We finally get to our final methods, &lt;code&gt;index&lt;/code&gt;, which provide us the index of a
+given Node, if it exists, and &lt;code&gt;remove&lt;/code&gt; which as the name says we&amp;rsquo;re removing
+some node given the data it contains.&lt;/p&gt;
+
+&lt;h3 id=&#34;the-end:ec6361bea6a833e53a4c1d5018f5dd1a&#34;&gt;The End&lt;/h3&gt;
+
+&lt;p&gt;Well folks that is it, as an exercise try to implement a doubly linked list,
+without looking to the code here, so you could be sure that you&amp;rsquo;re truly
+understanding it, and not simply rewriting.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>CODE2040 API challenge</title>
+      <link>http://localhost:1313/code2040-api-challenge/</link>
+      <pubDate>Fri, 02 Jan 2015 23:23:06 -0500</pubDate>
+      
+      <guid>http://localhost:1313/code2040-api-challenge/</guid>
+      <description>
+
+&lt;h3 id=&#34;overview:9ad81630fc134f79f8b80bc71e1f6165&#34;&gt;Overview&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;CODE2040&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:9ad81630fc134f79f8b80bc71e1f6165:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:9ad81630fc134f79f8b80bc71e1f6165:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;  is a nonprofit organization that creates pathways to
+educational, professional and entrepreneurial success in technology for
+underrepresented minorities with a specific focus on Blacks and Latino/as.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I was told about this program by a friend (Yuri) who was a Fellow in 2012, if
+you understand Portuguese and want to hear a little about his experience you
+could hear this interview&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:9ad81630fc134f79f8b80bc71e1f6165:2&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:9ad81630fc134f79f8b80bc71e1f6165:2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt; with him.  This is a great opportunity to get to
+know like minded people, that are interested in growing as IT professionals,
+since and also great opportunity to got a great internship in which your are
+not only going to learn on the internship, but with the various workshops that
+the CODE2040 organize along the duration of the program.&lt;/p&gt;
+
+&lt;p&gt;One of the key objective of the program is to get people engaged, and to create
+a community of people that represents the minorities in the IT world, seriously
+they even make you sign a honor contract that you are going to help others.&lt;/p&gt;
+
+&lt;p&gt;So as obvious as it sounds I got interested in the hole idea of the program,
+also in the opportunities that it creates, and went to their website to
+apply&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:9ad81630fc134f79f8b80bc71e1f6165:3&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:9ad81630fc134f79f8b80bc71e1f6165:3&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;applying:9ad81630fc134f79f8b80bc71e1f6165&#34;&gt;Applying&lt;/h3&gt;
+
+&lt;p&gt;As part of the process to apply there is some questions that I think are trying
+to evaluate your soft skills, also your interest in the program as I said the
+idea is to create a community of people that are going to help and spread the
+knowledge in their communities.&lt;/p&gt;
+
+&lt;p&gt;After the Demographic questions and the skills to access how you match the
+profile they are trying to find, we get to a really interesting part.&lt;/p&gt;
+
+&lt;h3 id=&#34;api-challenge:9ad81630fc134f79f8b80bc71e1f6165&#34;&gt;API Challenge&lt;/h3&gt;
+
+&lt;p&gt;The API challenge is a way to test if you are able to code a solution to simple
+problems on your own. The problems are really basic, you have to GET some
+values from their API process them and POST the results back. I&amp;rsquo;ll explain the
+logic of each problem, and later (after the application period ends) I&amp;rsquo;ll
+create specific articles for each implementation that I&amp;rsquo;ve made.&lt;/p&gt;
+
+&lt;h4 id=&#34;stage-i-reverse-a-string-you-are-going-to-receive-a-string-that-you-have:9ad81630fc134f79f8b80bc71e1f6165&#34;&gt;Stage I: Reverse a string You are going to receive a string, that you have&lt;/h4&gt;
+
+&lt;p&gt;to reverse it, most modern languages have builtin functions that do this.
+After you reverse the string you have to POST the result as a  json object in
+the format&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{ token: &#39;&amp;lt;The token you received&amp;gt;&#39;, string: &#39;reversed string&#39; }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Pretty straight forward, right?&lt;/p&gt;
+
+&lt;h4 id=&#34;stage-ii-needle-in-a-haystack-you-are-asked-to-given-a-list-array:9ad81630fc134f79f8b80bc71e1f6165&#34;&gt;Stage II: Needle in a haystack You are asked to given a list/array&lt;/h4&gt;
+
+&lt;p&gt;(haystack) and a value (needle) find in which position the needle is in the
+zero based list/array. Again really simple question, depending on the language
+you could have a builtin function, if not you could always iterate over the
+elements and find the index.  After you find the position you have to POST the
+result as a json object in the format&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{ token: &#39;&amp;lt;The token you received&amp;gt;&#39;, needle: index }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;stage-iii-prefix-you-are-asked-to-given-a-list-array-return-a-list-array:9ad81630fc134f79f8b80bc71e1f6165&#34;&gt;Stage III: Prefix You are asked to given a list/array, return a list/array&lt;/h4&gt;
+
+&lt;p&gt;with all the elements that &lt;em&gt;don&amp;rsquo;t&lt;/em&gt; start with the given &lt;code&gt;prefix&lt;/code&gt;. Again many
+modern languages have builtin functions that do this, if you are is a more low
+level language, you could use a for loop in each input, up to the size of the
+prefix, removing the element every time you find a match.  After you filter the
+input array you have to POST the result as a json object in the format&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{ token: &#39;&amp;lt;The token you received&amp;gt;&#39;, array: [ &#39;filtered&#39;, &#39;array&#39;] }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;stage-iv-the-dating-game-this-was-probably-the-most-difficult-problem:9ad81630fc134f79f8b80bc71e1f6165&#34;&gt;Stage IV: The dating game This was probably the most &amp;lsquo;difficult&amp;rsquo; problem&lt;/h4&gt;
+
+&lt;p&gt;of all, you have to receive a date in the ISO 8601 format add an interval in
+seconds and return the final time in the ISO 8601 format. Many languages have
+libraries to work with time, take a look in the documentation of your chosen
+language, it&amp;rsquo;s almost sure your are going to find something that could help a
+lot.  After you find the final &lt;code&gt;datestamp&lt;/code&gt; you have to POST the result as a
+json object in the format&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{ token: &#39;&amp;lt;The token you received&amp;gt;&#39;, datestamp: &#39;datestamp&#39; }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;final-considerations:9ad81630fc134f79f8b80bc71e1f6165&#34;&gt;Final Considerations&lt;/h3&gt;
+
+&lt;p&gt;I really enjoyed doing this challenge, and I have plans to keep using it, if it
+keeps working after the application period, to learn new languages and
+frameworks. Since it&amp;rsquo;s a great way to get a quick sense of a new tool. If you
+are part of a minority group you should really apply for the CODE2040 program I
+think it&amp;rsquo;s a great opportunity.&lt;/p&gt;
+
+&lt;p&gt;So Long, and Thanks for All the Fish&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+&lt;li id=&#34;fn:9ad81630fc134f79f8b80bc71e1f6165:1&#34;&gt;&lt;a href=&#34;http://code2040.org&#34;&gt;http://code2040.org&lt;/a&gt;
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:9ad81630fc134f79f8b80bc71e1f6165:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:9ad81630fc134f79f8b80bc71e1f6165:2&#34;&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=BT6UNiIzx34&#34;&gt;https://www.youtube.com/watch?v=BT6UNiIzx34&lt;/a&gt;
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:9ad81630fc134f79f8b80bc71e1f6165:2&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:9ad81630fc134f79f8b80bc71e1f6165:3&#34;&gt;&lt;a href=&#34;http://code2040.org/apply/&#34;&gt;http://code2040.org/apply/&lt;/a&gt;&lt;/The&gt;
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:9ad81630fc134f79f8b80bc71e1f6165:3&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

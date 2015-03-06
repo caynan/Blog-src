@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>linked list python &middot; Caynan Sousa</title>
+
+  
+  <link rel="stylesheet" href="http://localhost:1313//css/poole.css">
+  <link rel="stylesheet" href="http://localhost:1313//css/hyde.css">
+  <link rel="stylesheet" href="http://localhost:1313//css/poole-overrides.css">
+  <link rel="stylesheet" href="http://localhost:1313//css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://localhost:1313//css/hyde-x.css">
+  <link rel="stylesheet" href="http://localhost:1313//css/highlight/sunburst.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Caynan&#39;s Little Island &middot; Caynan Sousa" />
+
+  <meta name="description" content="Let&#39;s go into a quick dive into Linked Lists?">
+  <meta name="keywords" content="python,linked list,data structure,interview">
+  
+</head>
+<body class="theme-base-0c">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <img src="http://www.gravatar.com/avatar/8cd2bcac678a3c58c40e432938d78b86?s=200" alt="gravatar">
+      <h1>Caynan Sousa</h1>
+      <p class="lead"><p>Our Knowledge is a Little Island in a Great Ocean</p>
+</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://localhost:1313//">Blog</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://github.com/caynan">GitHub</a></li>
+      <li class="sidebar-nav-item"><a href="https://www.linkedin.com/in/caynan">LinkedIn</a></li>
+      
+      
+      
+    </ul>
+
+    <p>Copyright &copy; 2015 <a href="http://localhost:1313//license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>linked list python</h1>
+    <span class="post-date">Mar 3, 2015 &middot; 4 minute read &middot; <a href="http://localhost:1313/linked-list-python/#disqus_thread">Comments</a>
+    
+    <br/>
+    
+    <a class="label" href="http://localhost:1313//categories/interview">interview</a><a class="label" href="http://localhost:1313//categories/coding">coding</a><a class="label" href="http://localhost:1313//categories/python">python</a>
+    </span>
+    
+
+<h3 id="overview:ec6361bea6a833e53a4c1d5018f5dd1a">Overview</h3>
+
+<blockquote>
+<p>In computer science, a linked list is a data structure consisting of a group
+of nodes which together represent a sequence. Under the simplest form, each
+node is composed of a data and a reference (in other words, a link) to the
+next node in the sequence; more complex variants add additional links. This
+structure allows for efficient insertion or removal of elements from any
+position in the sequence.</p>
+</blockquote>
+
+<p>This is the definition we could find at
+<a href="http://en.wikipedia.org/wiki/Linked_list">Wikipedia</a>.  Linked Lists are really
+simple data structures, we only have to remember when solving problems that
+involve them, to notice if we&rsquo;re using singly linked lists (only have links to
+the next node) or doubly linked lists (links for previous and next nodes).</p>
+
+<h3 id="code:ec6361bea6a833e53a4c1d5018f5dd1a">CODE!</h3>
+
+<p>Enough talking let&rsquo;s start coding. First you should note the elements that a
+Linked List have, I see two of them, a Node and obviously the Linked List in
+itself, which if you think we could represent as a Node, we only need
+the Head of a Linked List to represent it.</p>
+
+<p>So let&rsquo;s create two classes in python, <code>Node</code> that is going to serve as a
+container for the data, and <code>LinkedList</code> that is going to provide us with
+different methods to manipulate the data structure.</p>
+
+<p>{% highlight python  %}
+    class _Node(object):
+        def <strong>init</strong>(self, data=None, next=None):
+            self.data = data
+            self.next = next</p>
+
+<pre><code>    def __str__(self):
+        return str(self.data)
+</code></pre>
+
+<p>{% endhighlight  %}</p>
+
+<p>There is only two things to note on our implementation of <strong>Node</strong>, first we&rsquo;re
+declaring it as a protected class, eventhough Python don&rsquo;t have a true
+protected notion, it&rsquo;s more of a
+<a href="https://google-styleguide.googlecode.com/svn/trunk/pyguide.html#Naming">notation</a>.
+The other interesting thing is that we&rsquo;re rewriting the <code>__str__</code>
+method from object, so every time we print our Nodes we&rsquo;re going to see the
+data they store, which in my opinion makes more sense.</p>
+
+<p>Now let&rsquo;s see our biggest class, <strong>LinkedList</strong>:</p>
+
+<pre><code class="language-python">	class LinkedList(object):
+		def __init__(self):
+			self.length = 0
+			self.head = None
+
+		def __str__(self):
+			return self._toString()
+
+		def __len__(self):
+			return self.length
+
+		def _toString(self):
+			node = self.head
+			string_to_return = []
+
+			# While nor None will print the value of the nodes
+			while node:
+				string_to_return.append('%s ' % node)
+				node = node.next
+
+			return ''.join(string_to_return).strip()
+
+</code></pre>
+
+<p>There are two things worth noting in this part of our class, first we&rsquo;re
+rewriting the method <code>__len__</code> from object, which permit us call <code>len</code> in our
+LinkedList, also note we&rsquo;re using a list to accumulate the string in the
+<code>_toString</code> method, this is to avoid waste of space, since strings are
+immutable in python, using something like <code>+=</code> will result in many objects.</p>
+
+<pre><code class="language-python">	def add(self, data):
+		if self.head is None:
+			self.head = _Node(data=data)
+			self.length += 1
+		else:
+			node = self.head
+
+			while node:
+				if node.next is None:
+					node.next = _Node(data=data)
+					self.length += 1
+					break
+				else:
+					node = node.next
+</code></pre>
+
+<p>Our add method, is pretty straight forward, if our Linked List is empty (head
+is None) we create a new node as head. If not, we find the tail of list, and
+insert our new Node after it.</p>
+
+<pre><code class="language-python">	def index(self, x):
+		for i in range(self.length):
+			if node.data = x:
+				return i
+			else:
+				node = node.next
+		raise Exception('Item Not Found!)
+
+
+	def remove(self, x):
+		# case is empty
+		if self.head is None:
+			raise Exception('Trying to remove from empty list')
+		# case is head
+		elif self.head.data == x:
+			self.head = None
+			self.length -= 1
+		# other cases
+		else:
+			node = self.head
+
+			while node:
+				if node.next is None:
+					raise Exception('Item Not Found!')
+				elif node.next.data == x:
+					node.next = node.next.next
+					self.length -= 1
+				else:
+					node = node.next
+</code></pre>
+
+<p>We finally get to our final methods, <code>index</code>, which provide us the index of a
+given Node, if it exists, and <code>remove</code> which as the name says we&rsquo;re removing
+some node given the data it contains.</p>
+
+<h3 id="the-end:ec6361bea6a833e53a4c1d5018f5dd1a">The End</h3>
+
+<p>Well folks that is it, as an exercise try to implement a doubly linked list,
+without looking to the code here, so you could be sure that you&rsquo;re truly
+understanding it, and not simply rewriting.</p>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "caynan";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "caynan";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://localhost:1313//js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','UA-57968478-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>

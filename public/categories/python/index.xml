@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Caynan&#39;s Little Island</title>
+    <link>http://localhost:1313/categories/python/</link>
+    <description>Recent content in Python on Caynan&#39;s Little Island</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 03 Mar 2015 18:50:48 -0500</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>linked list python</title>
+      <link>http://localhost:1313/linked-list-python/</link>
+      <pubDate>Tue, 03 Mar 2015 18:50:48 -0500</pubDate>
+      
+      <guid>http://localhost:1313/linked-list-python/</guid>
+      <description>
+
+&lt;h3 id=&#34;overview:ec6361bea6a833e53a4c1d5018f5dd1a&#34;&gt;Overview&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;In computer science, a linked list is a data structure consisting of a group
+of nodes which together represent a sequence. Under the simplest form, each
+node is composed of a data and a reference (in other words, a link) to the
+next node in the sequence; more complex variants add additional links. This
+structure allows for efficient insertion or removal of elements from any
+position in the sequence.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This is the definition we could find at
+&lt;a href=&#34;http://en.wikipedia.org/wiki/Linked_list&#34;&gt;Wikipedia&lt;/a&gt;.  Linked Lists are really
+simple data structures, we only have to remember when solving problems that
+involve them, to notice if we&amp;rsquo;re using singly linked lists (only have links to
+the next node) or doubly linked lists (links for previous and next nodes).&lt;/p&gt;
+
+&lt;h3 id=&#34;code:ec6361bea6a833e53a4c1d5018f5dd1a&#34;&gt;CODE!&lt;/h3&gt;
+
+&lt;p&gt;Enough talking let&amp;rsquo;s start coding. First you should note the elements that a
+Linked List have, I see two of them, a Node and obviously the Linked List in
+itself, which if you think we could represent as a Node, we only need
+the Head of a Linked List to represent it.&lt;/p&gt;
+
+&lt;p&gt;So let&amp;rsquo;s create two classes in python, &lt;code&gt;Node&lt;/code&gt; that is going to serve as a
+container for the data, and &lt;code&gt;LinkedList&lt;/code&gt; that is going to provide us with
+different methods to manipulate the data structure.&lt;/p&gt;
+
+&lt;p&gt;{% highlight python  %}
+    class _Node(object):
+        def &lt;strong&gt;init&lt;/strong&gt;(self, data=None, next=None):
+            self.data = data
+            self.next = next&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    def __str__(self):
+        return str(self.data)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endhighlight  %}&lt;/p&gt;
+
+&lt;p&gt;There is only two things to note on our implementation of &lt;strong&gt;Node&lt;/strong&gt;, first we&amp;rsquo;re
+declaring it as a protected class, eventhough Python don&amp;rsquo;t have a true
+protected notion, it&amp;rsquo;s more of a
+&lt;a href=&#34;https://google-styleguide.googlecode.com/svn/trunk/pyguide.html#Naming&#34;&gt;notation&lt;/a&gt;.
+The other interesting thing is that we&amp;rsquo;re rewriting the &lt;code&gt;__str__&lt;/code&gt;
+method from object, so every time we print our Nodes we&amp;rsquo;re going to see the
+data they store, which in my opinion makes more sense.&lt;/p&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s see our biggest class, &lt;strong&gt;LinkedList&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;	class LinkedList(object):
+		def __init__(self):
+			self.length = 0
+			self.head = None
+
+		def __str__(self):
+			return self._toString()
+
+		def __len__(self):
+			return self.length
+
+		def _toString(self):
+			node = self.head
+			string_to_return = []
+
+			# While nor None will print the value of the nodes
+			while node:
+				string_to_return.append(&#39;%s &#39; % node)
+				node = node.next
+
+			return &#39;&#39;.join(string_to_return).strip()
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There are two things worth noting in this part of our class, first we&amp;rsquo;re
+rewriting the method &lt;code&gt;__len__&lt;/code&gt; from object, which permit us call &lt;code&gt;len&lt;/code&gt; in our
+LinkedList, also note we&amp;rsquo;re using a list to accumulate the string in the
+&lt;code&gt;_toString&lt;/code&gt; method, this is to avoid waste of space, since strings are
+immutable in python, using something like &lt;code&gt;+=&lt;/code&gt; will result in many objects.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;	def add(self, data):
+		if self.head is None:
+			self.head = _Node(data=data)
+			self.length += 1
+		else:
+			node = self.head
+
+			while node:
+				if node.next is None:
+					node.next = _Node(data=data)
+					self.length += 1
+					break
+				else:
+					node = node.next
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Our add method, is pretty straight forward, if our Linked List is empty (head
+is None) we create a new node as head. If not, we find the tail of list, and
+insert our new Node after it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;	def index(self, x):
+		for i in range(self.length):
+			if node.data = x:
+				return i
+			else:
+				node = node.next
+		raise Exception(&#39;Item Not Found!)
+
+
+	def remove(self, x):
+		# case is empty
+		if self.head is None:
+			raise Exception(&#39;Trying to remove from empty list&#39;)
+		# case is head
+		elif self.head.data == x:
+			self.head = None
+			self.length -= 1
+		# other cases
+		else:
+			node = self.head
+
+			while node:
+				if node.next is None:
+					raise Exception(&#39;Item Not Found!&#39;)
+				elif node.next.data == x:
+					node.next = node.next.next
+					self.length -= 1
+				else:
+					node = node.next
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We finally get to our final methods, &lt;code&gt;index&lt;/code&gt;, which provide us the index of a
+given Node, if it exists, and &lt;code&gt;remove&lt;/code&gt; which as the name says we&amp;rsquo;re removing
+some node given the data it contains.&lt;/p&gt;
+
+&lt;h3 id=&#34;the-end:ec6361bea6a833e53a4c1d5018f5dd1a&#34;&gt;The End&lt;/h3&gt;
+
+&lt;p&gt;Well folks that is it, as an exercise try to implement a doubly linked list,
+without looking to the code here, so you could be sure that you&amp;rsquo;re truly
+understanding it, and not simply rewriting.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
